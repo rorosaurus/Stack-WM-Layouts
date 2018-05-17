@@ -54,14 +54,13 @@
     </Grid>
   </Grid>
 
+  <!-- Column 1, main center section -->
   <Grid Grid.Column="1">
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="6*"/>
-      <ColumnDefinition Width="9*"/>
+      <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
@@ -69,43 +68,13 @@
       <zones:WindowTabs.ItemsSource>
         <CompositeCollection>
           <CollectionContainer Collection="{Binding Windows, Source={x:Reference Main}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference LeftMain}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference RightMain}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference TopMain}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference BottomMain}}"/>
         </CompositeCollection>
       </zones:WindowTabs.ItemsSource>
     </zones:WindowTabs>
 
-    <zones:Zone x:Name="Main" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+    <zones:Zone x:Name="Main" Grid.Row="1" />
 
-    <zones:Zone x:Name="LeftMain" Grid.Column="0" Grid.RowSpan="2" Grid.Row="1"/>
-    <zones:Zone x:Name="RightMain" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1"/>
-    <zones:Zone x:Name="TopMain" Grid.Row="1" Grid.ColumnSpan="2"/>
-    <zones:Zone x:Name="BottomMain" Grid.Row="2" Grid.ColumnSpan="2"/>
-
-    <zones:Zone Grid.Column="0" Grid.Row="1"/>
-    <zones:Zone Grid.Column="1" Grid.Row="1"/>
-    <zones:Zone Grid.Column="0" Grid.Row="2"/>
-    <zones:Zone Grid.Column="1" Grid.Row="2"/>
-
-    <zones:Zone Grid.Column="0" Grid.RowSpan="2" Grid.Row="1"
-                    Margin="{Binding Source={StaticResource GripSize}, Converter={StaticResource ThicknessConverter}}"
-                    Target="{Binding ElementName=LeftMain}"/>
-    <zones:Zone Grid.Column="1" Grid.RowSpan="2" Grid.Row="1"
-                    Margin="{Binding Source={StaticResource GripSize}, Converter={StaticResource ThicknessConverter}}"
-                    Target="{Binding ElementName=RightMain}"/>
-
-    <Border Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-            zones:Layout.IsHint="True"
-            Width="360" Height="360" Background="#44F">
-      <!-- Find more symbols from Segoe UI Symbol in Character Map app -->
-      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                 FontFamily="Segoe UI Symbol" Foreground="White" Text="" FontSize="180"/>
-    </Border>
-    <zones:Zone Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="360" Height="360"
-                Target="{Binding ElementName=Main}"/>
+    <zones:Zone Grid.Row="1" Target="{Binding ElementName=Main}"/>
   </Grid>
   
   <!-- Column 2, right sidebar -->
