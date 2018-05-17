@@ -11,9 +11,7 @@
     d:DesignWidth="2100"
     d:DesignHeight="900"
 >
-  <!-- ===================================================================== -->
-  <!-- ! This file is overwritten after every update. Please, modify a copy! -->
-  <!-- ===================================================================== -->
+
   <Grid.Resources>
     <ResourceDictionary>
       <sys:Double x:Key="GripSize">200</sys:Double>
@@ -21,11 +19,14 @@
     </ResourceDictionary>
   </Grid.Resources>
 
+  <!-- Main column widths -->
   <Grid.ColumnDefinitions>
     <ColumnDefinition Width="1*"/>
     <ColumnDefinition Width="1080"/>
 	<ColumnDefinition Width="1*"/>
   </Grid.ColumnDefinitions>
+  
+  <!-- Column 0, left sidebar -->
   <Grid Grid.Column="0">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
@@ -35,31 +36,21 @@
     <zones:WindowTabs>
       <zones:WindowTabs.ItemsSource>
         <CompositeCollection>
-          <zones:ZoneElement Content="{Binding ViewModel, Source={x:Reference SideStack}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference SideSingle}}"/>
+          <zones:ZoneElement Content="{Binding ViewModel, Source={x:Reference LeftSideStack}}"/>
+          <CollectionContainer Collection="{Binding Windows, Source={x:Reference LeftSideSingle}}"/>
         </CompositeCollection>
       </zones:WindowTabs.ItemsSource>
     </zones:WindowTabs>
 
     <Grid Grid.Row="1">
-      <zones:Zone x:Name="SideSingle" Id="Side" />
-      <zones:Zone x:Name="SideStack" Id="Side Stack">
+      <zones:Zone x:Name="LeftSideSingle" Id="Side" />
+      <zones:Zone x:Name="LeftSideStack" Id="Side Stack">
         <zones:Zone.Layout>
           <ItemsPanelTemplate>
             <UniformGrid Columns="1"/>
           </ItemsPanelTemplate>
         </zones:Zone.Layout>
       </zones:Zone>
-
-      <Border HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="160" Height="160" Background="#44F" zones:Layout.IsHint="True">
-        <!-- Find more symbols from Segoe UI Symbol in Character Map app -->
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                     FontFamily="Segoe UI Symbol" Foreground="White" Text="" FontSize="80"/>
-      </Border>
-      <zones:Zone HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Width="160" Height="160"
-                    Target="{Binding ElementName=SideSingle}"/>
     </Grid>
   </Grid>
 
@@ -115,5 +106,33 @@
     <zones:Zone Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="360" Height="360"
                 Target="{Binding ElementName=Main}"/>
+  </Grid>
+  
+  <!-- Column 2, right sidebar -->
+  <Grid Grid.Column="2">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <zones:WindowTabs>
+      <zones:WindowTabs.ItemsSource>
+        <CompositeCollection>
+          <zones:ZoneElement Content="{Binding ViewModel, Source={x:Reference RightSideStack}}"/>
+          <CollectionContainer Collection="{Binding Windows, Source={x:Reference RightSideSingle}}"/>
+        </CompositeCollection>
+      </zones:WindowTabs.ItemsSource>
+    </zones:WindowTabs>
+
+    <Grid Grid.Row="1">
+      <zones:Zone x:Name="RightSideSingle" Id="Side" />
+      <zones:Zone x:Name="RightSideStack" Id="Side Stack">
+        <zones:Zone.Layout>
+          <ItemsPanelTemplate>
+            <UniformGrid Columns="1"/>
+          </ItemsPanelTemplate>
+        </zones:Zone.Layout>
+      </zones:Zone>
+    </Grid>
   </Grid>
 </Grid>
