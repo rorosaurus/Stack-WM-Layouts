@@ -12,14 +12,9 @@
     d:DesignHeight="900"
 >
 
-  <Grid.Resources>
-    <ResourceDictionary>
-      <sys:Double x:Key="GripSize">200</sys:Double>
-      <sys:Double x:Key="GripFontSize">100</sys:Double>
-    </ResourceDictionary>
-  </Grid.Resources>
+<!-- Separate the screen into three vertical regions with no fancy UI or tabs -->
 
-  <!-- Main column widths -->
+  <!-- Define relative column widths -->
   <Grid.ColumnDefinitions>
     <ColumnDefinition Width="2*"/>
     <ColumnDefinition Width="3*"/>
@@ -28,80 +23,37 @@
   
   <!-- Column 0, left sidebar -->
   <Grid Grid.Column="0">
-    <Grid.RowDefinitions>
+    
+	<Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-
-    <zones:WindowTabs>
-      <zones:WindowTabs.ItemsSource>
-        <CompositeCollection>
-          <zones:ZoneElement Content="{Binding ViewModel, Source={x:Reference LeftSideStack}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference LeftSideSingle}}"/>
-        </CompositeCollection>
-      </zones:WindowTabs.ItemsSource>
-    </zones:WindowTabs>
-
-    <Grid Grid.Row="1">
-      <zones:Zone x:Name="LeftSideSingle" Id="Side" />
-      <zones:Zone x:Name="LeftSideStack" Id="Side Stack">
-        <zones:Zone.Layout>
-          <ItemsPanelTemplate>
-            <UniformGrid Columns="1"/>
-          </ItemsPanelTemplate>
-        </zones:Zone.Layout>
-      </zones:Zone>
-    </Grid>
+	
+    <zones:Zone x:Name="LeftSideSingle" Id="Side" Grid.Row="1" />
+	
   </Grid>
 
   <!-- Column 1, main center section -->
   <Grid Grid.Column="1">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
+    
+	<Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-
-    <zones:WindowTabs>
-      <zones:WindowTabs.ItemsSource>
-        <CompositeCollection>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference Main}}"/>
-        </CompositeCollection>
-      </zones:WindowTabs.ItemsSource>
-    </zones:WindowTabs>
-
+	
     <zones:Zone x:Name="Main" Grid.Row="1" />
-
-    <zones:Zone Grid.Row="1" Target="{Binding ElementName=Main}"/>
+	
   </Grid>
   
   <!-- Column 2, right sidebar -->
   <Grid Grid.Column="2">
-    <Grid.RowDefinitions>
+    
+	<Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
-    <zones:WindowTabs>
-      <zones:WindowTabs.ItemsSource>
-        <CompositeCollection>
-          <zones:ZoneElement Content="{Binding ViewModel, Source={x:Reference RightSideStack}}"/>
-          <CollectionContainer Collection="{Binding Windows, Source={x:Reference RightSideSingle}}"/>
-        </CompositeCollection>
-      </zones:WindowTabs.ItemsSource>
-    </zones:WindowTabs>
-
-    <Grid Grid.Row="1">
-      <zones:Zone x:Name="RightSideSingle" Id="Side" />
-      <zones:Zone x:Name="RightSideStack" Id="Side Stack">
-        <zones:Zone.Layout>
-          <ItemsPanelTemplate>
-            <UniformGrid Columns="1"/>
-          </ItemsPanelTemplate>
-        </zones:Zone.Layout>
-      </zones:Zone>
-    </Grid>
+    <zones:Zone x:Name="RightSideSingle" Id="Side" Grid.Row="1" />
   </Grid>
+  
 </Grid>
